@@ -22,6 +22,11 @@ describe('joinRegExps', () => {
     expect(joinRegExp(regExps).toString()).toEqual('/[a-z]|[0-9]|\\s/')
   })
 
+  it('works with arrays of regexps', () => {
+    const regExps: (RegExp | RegExp[])[] = [[/[a-z]/], [/[0-9]/, /\s/]]
+    expect(joinRegExp(regExps).toString()).toEqual('/[a-z]|[0-9]|\\s/')
+  })
+
   it('strips their flags', () => {
     const regExps: RegExp[] = [/[a-z]/g, /[0-9]/i]
     expect(joinRegExp(regExps).toString()).toEqual('/[a-z]|[0-9]/')
